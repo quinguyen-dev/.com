@@ -4,30 +4,28 @@ import Phone from "../../../public/images/space-black.png";
 function IntroCard({
   header,
   children,
-  right = false,
 }: {
   header: string;
   children: React.ReactElement;
-  right?: boolean;
 }) {
   return (
-    <div className="flex max-w-[364px] flex-col">
-      <h1 className={`px-2 text-xl ${right ? "text-right" : "text-left"}`}>
-        {header}
-      </h1>
-      <hr className="my-2" />
-      <div className={`px-2 [&>p]:${right ? "text-right" : "text-left"}`}>
-        {children}
-      </div>
+    <div className="flex flex-col md:max-w-[364px]">
+      <h1 className="text-xl md:px-2">{header}</h1>
+      <hr className="md: my-2 hidden md:block" />
+      <div className="pt-1 md:px-2 md:pt-0">{children}</div>
     </div>
   );
 }
 
 export default function IntroPage() {
   return (
-    <div className="flex h-full w-full select-none items-center justify-center space-x-8">
-      {/* <!-- Left-mosttext-left information cards --> */}
-      <div className="grid h-[400px] grid-rows-2">
+    <div className="flex h-full w-5/6 min-w-[320px] select-none flex-col items-center p-0 md:w-11/12 md:flex-row md:justify-center">
+      <header className="mb-12 mt-[128px] w-full text-left md:hidden">
+        <h1 className="text-[48px]">QUI NGUYEN</h1>
+        <h2 className="text-[#A9A9A9]">Web & Mobile Developer</h2>
+      </header>
+      {/* <!-- Left-most information cards --> */}
+      <div className="space-y-8 md:grid md:h-[392px] md:grid-rows-2 md:space-y-0">
         <IntroCard header="WHO">
           <p className="text-sm text-[#A9A9A9]">
             I am a twenty-one (21) year old developer with a passion to create
@@ -44,7 +42,7 @@ export default function IntroPage() {
       </div>
 
       {/* <!-- Phone render --> */}
-      <div className="relative -translate-y-8">
+      <div className="relative hidden -translate-y-8 md:mx-8 md:block">
         <Image
           src={Phone}
           alt="iPhone 12"
@@ -59,16 +57,18 @@ export default function IntroPage() {
       </div>
 
       {/* <!-- Right-most information cards --> */}
-      <div className="grid h-[400px] grid-rows-2">
-        <IntroCard header="WHERE" right>
-          <p className="text-sm text-[#A9A9A9]">
+      <div className="mt-8 space-y-8 md:mt-0 md:grid md:h-[392px] md:grid-rows-2 md:space-y-0">
+        <IntroCard header="WHERE">
+          <p className="text-sm text-[#A9A9A9] ">
             I am based in Worcester, MA, where I attend Worcester Polytechnic
             Institute as a graduate student.
           </p>
         </IntroCard>
-        <IntroCard header="MORE" right>
+        <IntroCard header="WHY">
           <p className="text-sm text-[#A9A9A9]">
-            Contact me at the following platforms.
+            People judge an experience largely based on how they felt at its
+            peak and at its end, rather than the total sum or average of every
+            moment of the experience.
           </p>
         </IntroCard>
       </div>

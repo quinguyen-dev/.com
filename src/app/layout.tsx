@@ -25,8 +25,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={poppins.className}>
       <body className="flex h-screen flex-col bg-black text-white">
-        <main className="min-h-screen">{children}</main>
-        <nav className="absolute bottom-0 left-1/2 w-11/12 -translate-x-1/2 -translate-y-1/2 transform border-t border-white">
+        <main className="flex min-h-screen justify-center">{children}</main>
+        <nav className="absolute bottom-0 left-1/2 hidden w-11/12 -translate-x-1/2 -translate-y-1/2 transform border-t border-white md:block">
           <ul className="flex justify-center space-x-24 py-6">
             <li>
               <Link href="/intro">INTRO</Link>
