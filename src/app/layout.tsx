@@ -1,9 +1,8 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import Link from "next/link";
-import type { LinkProps } from "next/";
 
-const inter = Inter({ subsets: ["latin"] });
+const poppins = Poppins({ subsets: ["latin"], weight: ["300", "600"] });
 
 export const metadata = {
   title: "Qui Nguyen's Portfolio Website",
@@ -24,13 +23,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        {children}
-        <nav>
-          <ul>
+    <html lang="en" className={poppins.className}>
+      <body className="flex h-screen flex-col bg-black text-white">
+        <main className="min-h-screen">{children}</main>
+        <nav className="absolute bottom-0 left-1/2 w-11/12 -translate-x-1/2 -translate-y-1/2 transform border-t border-white">
+          <ul className="flex justify-center space-x-24 py-6">
             <li>
-              <Link href="/home">HOME</Link>
+              <Link href="/intro">INTRO</Link>
             </li>
             <li>
               <Link href="/work">WORK</Link>
