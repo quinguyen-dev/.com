@@ -1,6 +1,4 @@
-import IntroCard from "@/components/IntroCard/IntroCard";
-import Image from "next/image";
-import Phone from "../../../public/images/space-black.png";
+import Link from "next/link";
 
 async function getCurrentSong() {
   const response = await fetch("http://localhost:3000/api/spotify", {
@@ -12,71 +10,39 @@ async function getCurrentSong() {
 }
 
 export default async function IntroPage() {
-  const data = await getCurrentSong();
+  // const data = await getCurrentSong();
 
   return (
-    <div className="flex h-full w-5/6 min-w-[270px] select-none flex-col items-center p-0 md:w-11/12 md:flex-row md:justify-center">
-      {/* <!-- Conditional header for smaller screen sizes --> */}
-      <header className="mb-12 mt-[96px] w-full text-left md:hidden">
-        <h1 className="text-[48px]">QUI NGUYEN</h1>
-        <h2 className="text-[#A9A9A9]">Web & Mobile Developer</h2>
-      </header>
-
-      {/* <!-- Left-most information cards --> */}
-      <div className="space-y-8 md:grid md:h-[392px] md:grid-rows-2 md:space-y-0">
-        <IntroCard header="WHO">
-          <p className="text-sm text-[#A9A9A9]">
-            I am a twenty-one (21) year old developer with a passion to create
-            amazing user experiences.
-          </p>
-        </IntroCard>
-        <IntroCard header="WHY">
-          <p className="text-sm text-[#A9A9A9]">
-            People judge an experience largely based on how they felt at its
-            peak and at its end, rather than the total sum or average of every
-            moment of the experience.
-          </p>
-        </IntroCard>
-      </div>
-
-      {/* <!-- Phone render --> */}
-      <div className="relative hidden -translate-y-8 md:mx-8 md:block">
-        <Image
-          src={Phone}
-          alt="iPhone 12"
-          width={290}
-          className="max-w-[290px]"
-        />
-        <div className="absolute left-1/2 top-1/2 flex h-[562px] w-[262px] -translate-x-1/2 -translate-y-1/2 transform flex-col rounded-[33px] bg-[linear-gradient(180deg,_#161616_0%,_#0C0C0C_100%)] p-4">
-          <small className="mt-8 text-[10px] font-bold">
-            Currently listening to:
-          </small>
-          <Image
-            src={`${data.album.images[0].url}`}
-            width={250}
-            height={250}
-            alt={`Album cover for ${data.name}`}
-            className="mt-16 rounded-md"
-          />
-          <p className="mb-2 mt-6 text-center text-sm font-bold">{data.name}</p>
-          <sub className="text-center">{data.artists[0].name}</sub>
-        </div>
-      </div>
-
-      {/* <!-- Right-most information cards --> */}
-      <div className="mt-8 space-y-8 md:mt-0 md:grid md:h-[392px] md:grid-rows-2 md:space-y-0">
-        <IntroCard header="WHERE">
-          <p className="text-sm  text-[#A9A9A9] ">
-            I am based in Worcester, MA, where I attend Worcester Polytechnic
-            Institute as a graduate student.
-          </p>
-        </IntroCard>
-        <IntroCard header="MORE">
-          <p className="text-sm text-[#A9A9A9]">
-            Contact me at the following platforms
-          </p>
-        </IntroCard>
-      </div>
+    <div className="align-items flex w-[640px] min-w-[320px] flex-col justify-center px-6 [&>p]:pt-6">
+      <h1 className="whitespace-nowrap text-2xl font-bold">hi, i'm qui 👋</h1>
+      <p>
+        I’m a frontend developer with a passion to create amazing user
+        experiences. I am currently finishing up the last year of my BS/MS in CS
+        at Worcester Polytechnic Institute.
+      </p>
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam
+        eligendi cupiditate fugit dolores illo nemo nobis corrupti voluptatibus
+        voluptate in, natus, deleniti provident officia aspernatur quaerat ipsum
+        quibusdam consequuntur quis!
+      </p>
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam
+        eligendi cupiditate fugit dolores illo nemo nobis corrupti voluptatibus
+        voluptate in, natus, deleniti provident officia aspernatur quaerat ipsum
+        quibusdam consequuntur quis!
+      </p>
+      {/* <hr className="my-6" />
+      <nav>
+        <ul className="flex justify-between">
+          <li>
+            <Link href="/work">work</Link>
+          </li>
+          <li>
+            <Link href="/resume">resume</Link>
+          </li>
+        </ul>
+      </nav> */}
     </div>
   );
 }
