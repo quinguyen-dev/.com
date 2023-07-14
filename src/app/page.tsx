@@ -1,36 +1,27 @@
 "use client";
 import { useEffect } from "react";
-import { motion, useAnimate } from "framer-motion";
-import type {
-  AnimationScope,
-  Variants,
-  SVGAttributesAsMotionValues,
-} from "framer-motion";
+import { motion, stagger, useAnimate } from "framer-motion";
+import type { AnimationScope } from "framer-motion";
 
-const v: Variants = {
-  initial: {
-    height: 0,
-    overflow: "hidden",
-    position: "absolute",
-    y: 100,
-  },
-  target: {
-    height: "90px",
-    position: "relative",
-    y: 0,
-  },
-};
-
-function useHeaderAnimation(): AnimationScope {
+function useContentAnimation(): AnimationScope {
   const [scope, animate] = useAnimate();
 
   useEffect(() => {
     animate([
-      [scope.current, { width: "640px" }, { at: 0.5, type: "spring" }],
-      ["h1", { paddingBottom: "16px" }],
-      ["#a", { height: "90px", position: "relative", y: 0 }, { at: "<" }],
-      ["#b", { height: "90px", position: "relative", y: 0 }],
-      ["#c", { height: "90px", position: "relative", y: 0 }],
+      [
+        "h1",
+        { opacity: [0, 1], marginTop: "32px" },
+        { at: 0.5, ease: "easeIn" },
+      ],
+      [
+        "p",
+        { maxHeight: "400px", opacity: 1, y: [50, 0] },
+        {
+          delay: stagger(0.09),
+          duration: 0.55,
+          ease: "easeIn",
+        },
+      ],
     ]);
   }, []);
 
@@ -38,31 +29,31 @@ function useHeaderAnimation(): AnimationScope {
 }
 
 export default function IntroPage() {
-  const scope = useHeaderAnimation();
+  const scope = useContentAnimation();
 
   return (
-    <div className="flex max-w-[640px] flex-col justify-center px-6">
-      <motion.div layout ref={scope}>
-        <motion.h1 layout className="whitespace-nowrap text-2xl font-bold">
-          hi, i'm qui
-          <span className="pl-2">👋</span>
-        </motion.h1>
-        <motion.p id="a" initial="initial" variants={v}>
-          I’m a frontend developer with a passion to create amazing user
-          experiences. I am currently finishing up the last year of my BS/MS in
-          CS at Worcester Polytechnic Institute.
-        </motion.p>
-        <motion.p id="b" initial="initial" variants={v}>
-          I’m a frontend developer with a passion to create amazing user
-          experiences. I am currently finishing up the last year of my BS/MS in
-          CS at Worcester Polytechnic Institute.
-        </motion.p>
-        <motion.p id="c" initial="initial" variants={v}>
-          I’m a frontend developer with a passion to create amazing user
-          experiences. I am currently finishing up the last year of my BS/MS in
-          CS at Worcester Polytechnic Institute.
-        </motion.p>
-      </motion.div>
-    </div>
+    <motion.div
+      ref={scope}
+      className="flex min-w-[150px] max-w-[640px] flex-col justify-center px-4 md:px-0 [&>p]:mt-4"
+    >
+      <motion.h1 className="whitespace-nowrap text-2xl font-bold opacity-0">
+        hi, i'm qui
+        <span className="pl-2">👋</span>
+      </motion.h1>
+      <p className="max-h-0 opacity-0">
+        I’m a frontend developer with a passion to create amazing user
+        experiences. I am currently finishing up the last year of my BS/MS in CS
+        at Worcester Polytechnic Institute.
+      </p>
+      <p className="max-h-0 opacity-0">
+        I am currently working on building my software engineering skills
+        through agile-based work. I have proudly developed for Brigham & Women's
+        Hospital, as well as Polar Park and the Worcester Red Sox.
+      </p>
+      <p className="max-h-0 opacity-0">
+        Outside of programming, I am an avid music enjoyer, enjoy reading manga,
+        and love playing games with my friends.
+      </p>
+    </motion.div>
   );
 }
