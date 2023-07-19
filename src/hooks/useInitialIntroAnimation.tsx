@@ -23,8 +23,16 @@ export function useInitialIntroAnimation(): AnimationScope {
         { maxHeight: "150px", y: [100, 0], opacity: 1 },
         {
           delay: stagger(0.2),
-          duration: 0.45,
+          duration: 0.5,
           opacity: { duration: 0 },
+        },
+      ],
+      [
+        "div",
+        {
+          backgroundColor: "#0000",
+          opacity: 1,
+          marginTop: "24px",
         },
       ],
     ]);
